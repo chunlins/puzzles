@@ -30,6 +30,38 @@ https://leetcode.com/explore/interview/card/top-interview-questions-easy/
 
 
 """
+No. 11 | Container With Most Water | Media
+
+Given n non-negative integers a1, a2, ..., an, where each represents a point
+at coordinate (i, ai). n vertical lines are drawn such that the two endpoints
+of line i is at (i, ai) and (i, 0). Find two lines, which together with x-axis
+forms a container, such that the container contains the most water.
+
+Note: You may not slant the container and n is at least 2.
+"""
+# MySolution, iterate over start and end pointer
+def maxArea(self, height):
+    count, area = len(height), []
+    for start in range(0, count):
+        for end in range(start, count):
+            hightof = min(height[start], height[end])
+            lengthof = end - start
+            area.append(hightof * lengthof)
+    
+    return max(area)
+
+# MySolution, iterate over axis length
+def maxArea(self, height):
+    area = []
+    for axis in range(1, len(height)):
+        water = [min(height[i], height[i - axis]) 
+                 for i in range(axis, len(height))]
+        area.append(max(water) * axis)
+        
+    return max(area)
+
+
+"""
 No. 020 | Valid Parenthese | Easy
 
 Given a string containing just the characters '(', ')', '{', '}', '[' and ']',
